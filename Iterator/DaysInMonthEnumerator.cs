@@ -7,37 +7,39 @@ using System.Threading.Tasks;
 
 namespace Iterator
 {
-    public class DaysInMonthEnumerator : IEnumerator<MonthWithDays>
+    internal class DaysInMonthEnumerator : IEnumerator<MonthWithDays>
     {
-        private int year = 1;
+        private int year = 2024;
         private int month = 0;
-
         public MonthWithDays Current => new MonthWithDays()
         {
-            Date = $"{year.ToString().PadLeft(4, '0')}-{month}",
-            Days = DateTime.DaysInMonth(year, month)
+            Month =$"{year.ToString().PadLeft(4,'0')}-{month}",
+            Days=DateTime.DaysInMonth(year, month),
         };
 
         object IEnumerator.Current => Current;
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            // Incase we want to clean up resources the enumerator needs , let's make it empty for now
+        }
 
         public bool MoveNext()
         {
-            month++;
-            if (month > 12)
-            {
+            month += 1;
+
+            if(month >12) {
                 month = 1;
-                year++;
+                year +=1;
             }
-            return year < 5;
+
+            return year < 2030;
         }
 
         public void Reset()
         {
-            month = 0;
-            year = 1;
+            month=0;
+            year = 2024;
         }
-
     }
 }

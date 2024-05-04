@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Iterator
 {
-    public class MonthWithDays
-    {
-        public string Date { get; set; }
+    
+    public class MonthWithDays {
+        public string Month { get; set; }
         public int Days { get; set; }
     }
 }
